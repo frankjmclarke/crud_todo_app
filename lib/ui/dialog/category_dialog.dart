@@ -2,6 +2,7 @@ import 'package:crud_todo_app/common/adaptive_contextual_layout.dart';
 import 'package:crud_todo_app/common/extension.dart';
 import 'package:crud_todo_app/dependency/dependency.dart';
 import 'package:crud_todo_app/ui/widgets/custom_mouse_region.dart';
+import 'package:crud_todo_app/ui/widgets/dateWidget.dart';
 import 'package:crud_todo_app/viewmodel/category/category_provider.dart';
 import 'package:crud_todo_app/viewmodel/category/category_state.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class CategoryFormDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    var dateController = TextEditingController(); //date is wrapped in TextField
     final categoryState = ref.watch(categoryViewModelPod);
     final isValidForm = ref.watch(validationCategoryPod);
 
@@ -54,7 +56,9 @@ class CategoryFormDialog extends ConsumerWidget {
                 ).paddingOnly(b: 15),
                 Column(
                   children: <Widget>[
-                    const NameCategory().paddingOnly(b: 5),
+                    NameCategory.h('Url').paddingOnly(b: 5),
+                    NameCategory.h('Description').paddingOnly(b: 5),
+                    DateCategory.h('Enter Date:', dateController),
                     const EmojiCategory().paddingOnly(b: 25),
                   ],
                 ),
@@ -75,6 +79,11 @@ class CategoryFormDialog extends ConsumerWidget {
   void _saveCategory(WidgetRef ref) {
     ref.read(categoryViewModelPod.notifier).saveCategory(
           ref.read(nameCategoryPod.notifier).state.text!,
+          ref.read(nameCategoryPod.notifier).state.text!,
+          ref.read(nameCategoryPod.notifier).state.date!,
+          ref.read(nameCategoryPod.notifier).state.text!,
+          ref.read(nameCategoryPod.notifier).state.rent!,
+          ref.read(nameCategoryPod.notifier).state.text!,
           ref.read(emojiCategoryPod.notifier).state.text!,
         );
   }
@@ -85,11 +94,37 @@ class CategoryFormDialog extends ConsumerWidget {
   }
 }
 
-class NameCategory extends HookConsumerWidget {
-  const NameCategory({super.key});
+class DateCategory extends HookConsumerWidget {
+  DateCategory({super.key});
+
+  DateCategory.h(this.hint, this._dateController, {super.key});
+
+  String hint = 'Enter text';
+  var _dateController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    //Describes the part of the
+    // user interface represented by this widget.
+
+    return DateWidget(
+      dateController: _dateController,
+      label: 'Enter Text:',
+    );
+  }
+}
+
+class NameCategory extends HookConsumerWidget {
+  NameCategory({super.key});
+
+  NameCategory.h(this.hint, {super.key});
+
+  String hint = 'Enter text';
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    //Describes the part of the
+    // user interface represented by this widget.
     final nameText = ref.watch(nameCategoryPod.notifier);
     final textController = useTextEditingController();
 
@@ -97,7 +132,7 @@ class NameCategory extends HookConsumerWidget {
       controller: textController,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        hintText: 'Name',
+        hintText: hint,
         errorText: nameText.state.message,
       ),
       onChanged: (value) => nameText.state =

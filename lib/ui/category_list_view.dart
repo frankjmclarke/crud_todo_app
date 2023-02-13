@@ -82,7 +82,7 @@ class CategoryListView extends ConsumerWidget {
                                       getDevice(),
                                     ),
                                     cursor: SystemMouseCursors.click,
-                                    tooltipMessage: item.name,
+                                    tooltipMessage: item.url,
                                     child: CategoryItem(
                                       item: item,
                                       onClick: () => onGoToDetail(item.id!),

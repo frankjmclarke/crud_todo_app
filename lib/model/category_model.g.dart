@@ -8,7 +8,12 @@ part of 'category_model.dart';
 
 Category _$CategoryFromJson(Map<String, dynamic> json) => Category(
       id: json['id'] as String?,
-      name: json['name'] as String,
+      url: json['url'] as String,
+      phone: json['phone'] as String,
+      date: json['date'] as DateTime,
+      description: json['description'] as String,
+      rent: json['rent'] as num,
+      status: json['status'] as String,
       emoji: Category._emojiFromJson(json['emoji'] as String),
       todoSize: json['todoSize'] as int? ?? 0,
     );
@@ -23,7 +28,11 @@ Map<String, dynamic> _$CategoryToJson(Category instance) {
   }
 
   writeNotNull('id', instance.id);
-  val['name'] = instance.name;
+  val['phone'] = instance.phone;
+  val['date'] = instance.date;
+  val['description'] = instance.description;
+  val['rent'] = instance.rent;
+  val['status'] = instance.status;
   val['emoji'] = Category._emojiToJson(instance.emoji);
   val['todoSize'] = instance.todoSize;
   return val;

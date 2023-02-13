@@ -35,7 +35,7 @@ class CategoryItem extends StatelessWidget {
               children: <Widget>[
                 FittedBox(
                   child: Text(
-                    item.name,
+                    item.description,
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,

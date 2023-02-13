@@ -164,7 +164,7 @@ class CategorySection extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    category.name,
+                    category.description,
                     style: const TextStyle(
                       fontSize: 35,
                       fontWeight: FontWeight.w700,

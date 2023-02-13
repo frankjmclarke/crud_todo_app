@@ -15,13 +15,19 @@ class CategoryViewModel extends StateNotifier<CategoryState> {
 
   ValidationText onChangeEmoji(String value) => value.validateEmoji();
 
-  Future<void> saveCategory(String name, String emoji) async {
+  Future<void> saveCategory(String url, String phone, DateTime date,
+      String description, num rent, String status, String emoji) async {
     try {
       state = const CategoryState.loading();
 
       await _repository.saveCategory(
         Category(
-          name: name,
+          url: url,
+          phone: phone,
+          date: date,
+          description: description,
+          rent: rent,
+          status: status,
           emoji: EmojiParser().getEmoji(emoji),
         ),
       );

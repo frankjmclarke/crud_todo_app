@@ -3,17 +3,32 @@ import 'package:crud_todo_app/model/todo_model.dart';
 import 'package:dart_emoji/dart_emoji.dart';
 
 const categoryId = 'ABC123';
-const categoryName = 'Test Category';
+const phoneCat = '604-825-3728';
+const rentCat = 2100;
+const statusCat = 'Deposit';
+const descriptionCat = 'A nice Place';
+const categoryUrl =
+    'https://vancouver.craigslist.org/van/apa/d/vancouver-vancouver-dt-one-burrard/7588196097.html';
 final categoryEmoji = EmojiParser().get('😀');
 
 Category get initialCategory => Category(
-      name: categoryName,
+      url: categoryUrl,
+      phone: phoneCat,
+      date: DateTime.now(),
+      description: descriptionCat,
+      rent: rentCat,
+      status: statusCat,
       emoji: categoryEmoji,
     );
 
 Category get category => Category(
       id: categoryId,
-      name: categoryName,
+      url: categoryUrl,
+      phone: phoneCat,
+      date: DateTime.now(),
+      description: descriptionCat,
+      rent: rentCat,
+      status: statusCat,
       emoji: categoryEmoji,
     );
 

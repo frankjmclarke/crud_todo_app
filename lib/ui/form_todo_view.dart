@@ -211,7 +211,7 @@ class CategoryTodo extends StatelessWidget {
                 style: const TextStyle(fontSize: 16),
               ).paddingOnly(b: 5, r: 5),
               Text(
-                category.name,
+                category.description,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,

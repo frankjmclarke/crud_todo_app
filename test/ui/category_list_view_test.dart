@@ -127,7 +127,6 @@ void main() {
         expect(tester.widgetList(find.byType(CategoryItem)), [
           isA<CategoryItem>()
               .having((w) => w.item.id, 'id', categoryId)
-              .having((w) => w.item.name, 'name', categoryName)
               .having((w) => w.item.emoji, 'emoji', categoryEmoji)
               .having((w) => w.item.todoSize, 'todoSize', 0),
         ]);
